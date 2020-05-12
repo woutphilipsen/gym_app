@@ -50379,18 +50379,21 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(_inertiajs_inertia_vue__WEBPACK_IMPORTED_MODULE_0__["InertiaApp"]);
 var app = document.getElementById('app');
-new vue__WEBPACK_IMPORTED_MODULE_1___default.a({
-  render: function render(h) {
-    return h(_inertiajs_inertia_vue__WEBPACK_IMPORTED_MODULE_0__["InertiaApp"], {
-      props: {
-        initialPage: JSON.parse(app.dataset.page),
-        resolveComponent: function resolveComponent(name) {
-          return __webpack_require__("./resources/js/Pages sync recursive ^\\.\\/.*$")("./".concat(name))["default"];
+
+if (app) {
+  new vue__WEBPACK_IMPORTED_MODULE_1___default.a({
+    render: function render(h) {
+      return h(_inertiajs_inertia_vue__WEBPACK_IMPORTED_MODULE_0__["InertiaApp"], {
+        props: {
+          initialPage: JSON.parse(app.dataset.page),
+          resolveComponent: function resolveComponent(name) {
+            return __webpack_require__("./resources/js/Pages sync recursive ^\\.\\/.*$")("./".concat(name))["default"];
+          }
         }
-      }
-    });
-  }
-}).$mount(app);
+      });
+    }
+  }).$mount(app);
+}
 
 /***/ }),
 
