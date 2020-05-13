@@ -7,7 +7,7 @@ use Inertia\Inertia;
 use App\Models\Lead;
 
 class LeadController extends Controller
-{
+{    
     public function index()
     {
         $leads = Lead::query()
@@ -51,5 +51,12 @@ class LeadController extends Controller
         ]);
 
         return redirect()->route('dash');
+    }
+
+    public function view(Lead $lead)
+    {
+        return Inertia::render('Leads/LeadView.vue', [
+            'lead-prop' => $lead
+        ]);
     }
 }

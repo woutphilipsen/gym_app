@@ -9,7 +9,7 @@
         </div>
 
         <div class="col-md-12">
-          <table class="table table-bordered bg-white">
+          <table class="table table-bordered bg-white" style="text-align: center;">
             <tr>
               <th>Id</th>
               <th>Name</th>
@@ -18,7 +18,7 @@
               <th>Date Of Birth</th>
               <th>Package</th>
               <th>Added On</th>
-              <th></th>
+              <th>Edit</th>
             </tr>
             <tr v-for="lead in leads" :key="lead.id">
               <td>{{ lead.id }}</td>
@@ -28,7 +28,7 @@
               <td>{{ lead.dob }}</td>
               <td>{{ lead.interested_package }}</td>
               <td>{{ lead.created_at }}</td>
-              <td></td>
+              <td>></td>
             </tr>
           </table>
         </div>

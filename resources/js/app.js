@@ -2,8 +2,9 @@ require('./bootstrap');
 
 import { InertiaApp } from '@inertiajs/inertia-vue'
 import Vue from 'vue'
+import VueFilterDateFormat from 'vue-filter-date-format';
 
-Vue.use(InertiaApp)
+Vue.use(InertiaApp, VueFilterDateFormat)
 
 const app = document.getElementById('app')
 
