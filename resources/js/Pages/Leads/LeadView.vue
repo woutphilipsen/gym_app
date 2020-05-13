@@ -15,7 +15,7 @@
                         </div>
                         <div class="form-group">
                             <label for="package">Interested package</label>
-                            <input type="text" class="form-control" placeholder="Enter the package of interest.." v-model="lead.package" id="package" tabindex="5">
+                            <input type="text" class="form-control" placeholder="Enter the package of interest.." v-model="lead.interested_package" id="package" tabindex="5">
                         </div>
                     </div>
 
@@ -31,8 +31,9 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-md-12">
-                            <button class="btn btn-success" style="margin-left: 35%; margin-top: 35%;">Save</button>
+                        <div class="col-md-12" style="margin-top: 35%;">
+                            <button class="btn btn-success" type="submit">Save</button>
+                            <inertia-link class="btn btn-warning" :href="$route('lead.list')" style="margin-left: 10px;">Back</inertia-link>
                         </div>
                     </div>
 
@@ -58,7 +59,7 @@ export default {
                 email: '',
                 phone: '',
                 dob: '',
-                package: ''
+                interested_package: ''
             }
         }
     },

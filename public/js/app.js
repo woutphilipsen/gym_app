@@ -2018,6 +2018,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -2046,6 +2050,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
 //
 //
 //
@@ -2197,6 +2202,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -2212,7 +2218,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         email: '',
         phone: '',
         dob: '',
-        "package": ''
+        interested_package: ''
       }
     };
   },
@@ -39435,7 +39441,21 @@ var render = function() {
                   _vm._v(" "),
                   _c("td", [_vm._v(_vm._s(lead.created_at))]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(">")])
+                  _c(
+                    "td",
+                    [
+                      _c(
+                        "inertia-link",
+                        {
+                          attrs: {
+                            href: _vm.$route("lead.view", { lead: lead })
+                          }
+                        },
+                        [_c("i", { staticClass: "fa fa-edit" })]
+                      )
+                    ],
+                    1
+                  )
                 ])
               })
             ],
@@ -39555,8 +39575,8 @@ var render = function() {
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: _vm.lead.package,
-                      expression: "lead.package"
+                      value: _vm.lead.interested_package,
+                      expression: "lead.interested_package"
                     }
                   ],
                   staticClass: "form-control",
@@ -39566,13 +39586,17 @@ var render = function() {
                     id: "package",
                     tabindex: "5"
                   },
-                  domProps: { value: _vm.lead.package },
+                  domProps: { value: _vm.lead.interested_package },
                   on: {
                     input: function($event) {
                       if ($event.target.composing) {
                         return
                       }
-                      _vm.$set(_vm.lead, "package", $event.target.value)
+                      _vm.$set(
+                        _vm.lead,
+                        "interested_package",
+                        $event.target.value
+                      )
                     }
                   }
                 })
@@ -39646,16 +39670,29 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-md-12" }, [
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-success",
-                    staticStyle: { "margin-left": "35%", "margin-top": "35%" }
-                  },
-                  [_vm._v("Save")]
-                )
-              ])
+              _c(
+                "div",
+                {
+                  staticClass: "col-md-12",
+                  staticStyle: { "margin-top": "35%" }
+                },
+                [
+                  _c("button", { staticClass: "btn btn-success" }, [
+                    _vm._v("Save")
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "inertia-link",
+                    {
+                      staticClass: "btn btn-warning",
+                      staticStyle: { "margin-left": "10px" },
+                      attrs: { href: _vm.$route("lead.list") }
+                    },
+                    [_vm._v("Back")]
+                  )
+                ],
+                1
+              )
             ])
           ])
         ]
@@ -39772,8 +39809,8 @@ var render = function() {
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: _vm.lead.package,
-                      expression: "lead.package"
+                      value: _vm.lead.interested_package,
+                      expression: "lead.interested_package"
                     }
                   ],
                   staticClass: "form-control",
@@ -39783,13 +39820,17 @@ var render = function() {
                     id: "package",
                     tabindex: "5"
                   },
-                  domProps: { value: _vm.lead.package },
+                  domProps: { value: _vm.lead.interested_package },
                   on: {
                     input: function($event) {
                       if ($event.target.composing) {
                         return
                       }
-                      _vm.$set(_vm.lead, "package", $event.target.value)
+                      _vm.$set(
+                        _vm.lead,
+                        "interested_package",
+                        $event.target.value
+                      )
                     }
                   }
                 })
@@ -39863,16 +39904,34 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-md-12" }, [
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-success",
-                    staticStyle: { "margin-left": "35%", "margin-top": "35%" }
-                  },
-                  [_vm._v("Save")]
-                )
-              ])
+              _c(
+                "div",
+                {
+                  staticClass: "col-md-12",
+                  staticStyle: { "margin-top": "35%" }
+                },
+                [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-success",
+                      attrs: { type: "submit" }
+                    },
+                    [_vm._v("Save")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "inertia-link",
+                    {
+                      staticClass: "btn btn-warning",
+                      staticStyle: { "margin-left": "10px" },
+                      attrs: { href: _vm.$route("lead.list") }
+                    },
+                    [_vm._v("Back")]
+                  )
+                ],
+                1
+              )
             ])
           ])
         ]
@@ -52629,6 +52688,11 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
 
+
+
+vue__WEBPACK_IMPORTED_MODULE_1___default.a.prototype.$route = function () {
+  return route.apply(void 0, arguments).url();
+};
 
 vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(_inertiajs_inertia_vue__WEBPACK_IMPORTED_MODULE_0__["InertiaApp"], vue_filter_date_format__WEBPACK_IMPORTED_MODULE_2__["default"]);
 var app = document.getElementById('app');

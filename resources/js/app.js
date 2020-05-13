@@ -4,6 +4,7 @@ import { InertiaApp } from '@inertiajs/inertia-vue'
 import Vue from 'vue'
 import VueFilterDateFormat from 'vue-filter-date-format';
 
+Vue.prototype.$route = (...args) => route(...args).url()
 Vue.use(InertiaApp, VueFilterDateFormat)
 
 const app = document.getElementById('app')

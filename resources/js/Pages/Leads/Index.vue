@@ -28,7 +28,11 @@
               <td>{{ lead.dob }}</td>
               <td>{{ lead.interested_package }}</td>
               <td>{{ lead.created_at }}</td>
-              <td>></td>
+              <td>
+                <inertia-link :href="$route('lead.view', {lead: lead})">
+                 <i class="fa fa-edit"></i>
+                </inertia-link>
+              </td>
             </tr>
           </table>
         </div>
