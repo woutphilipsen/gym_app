@@ -59,7 +59,7 @@ export default {
                 email: '',
                 phone: '',
                 dob: '',
-                interested_package: ''
+                package: ''
             }
         }
     },
@@ -68,7 +68,7 @@ export default {
     },
     methods: {
         async handleSubmit() {
-            let response = await this.$inertia.post('/leads/save', this.lead)
+            let response = await this.$inertia.post('/leads/update', this.lead)
         }
     }
 }

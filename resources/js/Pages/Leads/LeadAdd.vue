@@ -59,7 +59,7 @@ export default {
                 package: ''
             }
         }
-    }, 
+    },
     methods: {
         async handleSubmit() {
             let response = await this.$inertia.post('/leads/save', this.lead)

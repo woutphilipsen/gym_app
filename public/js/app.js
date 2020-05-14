@@ -2218,7 +2218,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         email: '',
         phone: '',
         dob: '',
-        interested_package: ''
+        "package": ''
       }
     };
   },
@@ -2236,7 +2236,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return _this.$inertia.post('/leads/save', _this.lead);
+                return _this.$inertia.post('/leads/update', _this.lead);
 
               case 2:
                 response = _context.sent;
@@ -39416,7 +39416,7 @@ var render = function() {
                 _vm._v(" "),
                 _c("th", [_vm._v("Phone Number")]),
                 _vm._v(" "),
-                _c("th", [_vm._v("Date Of Birth")]),
+                _c("th", [_vm._v("Age")]),
                 _vm._v(" "),
                 _c("th", [_vm._v("Package")]),
                 _vm._v(" "),
@@ -39435,7 +39435,7 @@ var render = function() {
                   _vm._v(" "),
                   _c("td", [_vm._v(_vm._s(lead.phone))]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(lead.dob))]),
+                  _c("td", [_vm._v(_vm._s(lead.age))]),
                   _vm._v(" "),
                   _c("td", [_vm._v(_vm._s(lead.interested_package))]),
                   _vm._v(" "),
