@@ -3,9 +3,9 @@
     <div class="container">
       <div class="row">
         <div class="row">
-            <div class="col-md-12">
-                <h1>Leads</h1>
-            </div>
+          <div class="col-md-12">
+            <h1 style="margin-left:30%; margin-bottom:30px">Leads</h1>
+          </div>
         </div>
 
         <div class="col-md-12">
@@ -30,11 +30,14 @@
               <td>{{ lead.created_at }}</td>
               <td>
                 <inertia-link :href="$route('lead.view', {lead: lead})">
-                 <i class="fa fa-edit"></i>
+                  <i class="fa fa-edit"></i>
                 </inertia-link>
               </td>
             </tr>
           </table>
+        </div>
+        <div class="col-md-12">
+          <inertia-link class="btn btn-info" :href="$route('lead.add')" style="margin-top:30px; margin-right:10px; float:right;">Add lead</inertia-link>
         </div>
       </div>
     </div>

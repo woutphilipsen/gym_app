@@ -1,75 +1,163 @@
 <template>
-    <layout>
-        <div class="container">
-            <form @submit.prevent="handleSubmit">
-                <div class="row">
-
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" class="form-control" placeholder="Enter name.." v-model="lead.name" id="name" tabindex="1">
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Phone</label>
-                            <input type="text" class="form-control" placeholder="Enter phone.." v-model="lead.phone" id="phone" tabindex="3">
-                        </div>
-                        <div class="form-group">
-                            <label for="package">Interested package</label>
-                            <input type="text" class="form-control" placeholder="Enter the package of interest.." v-model="lead.interested_package" id="package" tabindex="5">
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="email">Email Address</label>
-                            <input type="email" class="form-control" placeholder="Enter email.." v-model="lead.email" id="email" tabindex="2">
-                        </div>
-                        <div class="form-group">
-                            <label for="dob">Birthday</label>
-                            <input type="date" class="form-control" placeholder="Enter date of birth.." v-model="lead.dob" id="dob" tabindex="4">
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-12" style="margin-top: 35%;">
-                            <button class="btn btn-success" type="submit">Save</button>
-                            <inertia-link class="btn btn-warning" :href="$route('lead.list')" style="margin-left: 10px;">Back</inertia-link>
-                        </div>
-                    </div>
-
-                </div>
-            </form>
+  <layout>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1>
+            <inertia-link :href="$route('lead.list')">Leads</inertia-link>
+            <span class="breadcrumb-sp">/</span>
+            Lead details
+          </h1>
         </div>
-    </layout>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header">Lead details</div>
+            <div class="card-body">
+              <form @submit.prevent="handleSubmit">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="name">Name</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Enter name.."
+                        v-model="lead.name"
+                        id="name"
+                        tabindex="1"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="phone">Phone</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Enter phone.."
+                        v-model="lead.phone"
+                        id="phone"
+                        tabindex="3"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="package">Interested package</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Enter the package of interest.."
+                        v-model="lead.interested_package"
+                        id="package"
+                        tabindex="5"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="email">Email Address</label>
+                      <input
+                        type="email"
+                        class="form-control"
+                        placeholder="Enter email.."
+                        v-model="lead.email"
+                        id="email"
+                        tabindex="2"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="dob">Birthday</label>
+                      <input
+                        type="date"
+                        class="form-control"
+                        placeholder="Enter date of birth.."
+                        v-model="lead.dob"
+                        id="dob"
+                        tabindex="4"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="col-md-12">
+                    <button class="btn btn-success" type="submit">Save</button>
+                    <inertia-link
+                      class="btn btn-warning"
+                      :href="$route('lead.list')"
+                      style="margin-left: 10px;"
+                    >Back</inertia-link>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card" v-if="lead.reminders.length > 0">
+            <div class="card-header">Lead reminders</div>
+            <div class="card-body">
+              <ul class="list-group list-group-flush">
+                <li
+                  class="list-group-item list-group-item-action"
+                  v-for="reminder in lead.reminders"
+                  :key="reminder.id"
+                >
+                  <div class="row">
+                    <div class="col-md-6">{{ reminder.reminder }}</div>
+                    <div class="col-md-2">{{ reminder.reminder_date }}</div>
+                    <div class="col-md-2"><strong>{{ reminder.status }}</strong></div>
+                    <div class="col-md-2">
+                        <inertia-link href="#" class="float-right">
+                            <i class="fa fa-edit"></i>
+                        </inertia-link>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="card" v-else>
+            <div class="card-header">Lead reminders</div>
+            <div class="card-body">
+              <button class="btn btn-success">Add new reminder</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </layout>
 </template>
 
 <script>
-import Layout from './../../Shared/Layout'
+import Layout from "./../../Shared/Layout";
 export default {
-    props: {
-        leadProp: Object
-    },
-    components: {
-        Layout
-    },
-    data() {
-        return {
-            lead: {
-                name: '',
-                email: '',
-                phone: '',
-                dob: '',
-                package: ''
-            }
-        }
-    },
-    created() {
-        this.lead = this.leadProp
-    },
-    methods: {
-        async handleSubmit() {
-            let response = await this.$inertia.post('/leads/update', this.lead)
-        }
+  props: {
+    leadProp: Object
+  },
+  components: {
+    Layout
+  },
+  data() {
+    return {
+      lead: {
+        name: "",
+        email: "",
+        phone: "",
+        dob: "",
+        package: ""
+      }
+    };
+  },
+  created() {
+    this.lead = this.leadProp;
+  },
+  methods: {
+    async handleSubmit() {
+      let response = await this.$inertia.post("/leads/update", this.lead);
     }
-}
+  }
+};
 </script>
