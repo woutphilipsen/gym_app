@@ -122,7 +122,7 @@
           <div class="card" v-else>
             <div class="card-header">Lead reminders</div>
             <div class="card-body">
-              <button class="btn btn-success">Add new reminder</button>
+              <inertia-link :href="$route('reminder.add', {lead: lead})" class="btn btn-success">Add new reminder</inertia-link>
             </div>
           </div>
         </div>
