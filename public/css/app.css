@@ -13926,3 +13926,12 @@ a.text-dark:focus {
   clip: auto;
 }
 
+.breabcrumb-sep {
+  color: lightgray;
+}
+
+.error {
+  color: red;
+  font-size: 0.8em;
+}
+

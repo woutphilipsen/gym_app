@@ -20,6 +20,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/leads/update', [LeadController::class, 'update'])->name('lead.update');
 
     Route::get('/leads/view/{lead}/reminder/add', [ReminderController::class, 'add'])->name('reminder.add');
+    Route::post('/leads/view/reminder/save', [ReminderController::class, 'store'])->name('reminder.save');
 });
 
 Auth::routes();

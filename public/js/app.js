@@ -2193,6 +2193,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -2203,12 +2205,21 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      reminder: '',
-      reminder_date: ''
+      reminder: {
+        reminder: '',
+        reminder_date: ''
+      }
     };
   },
   methods: {
-    handleSubmit: function handleSubmit() {}
+    handleSubmit: function handleSubmit() {
+      var postData = {
+        reminder: this.reminder.reminder,
+        reminder_date: this.reminder.reminder_date,
+        lead_id: this.lead.id
+      };
+      this.$inertia.post(route('reminder.save'), postData);
+    }
   }
 });
 
@@ -39988,7 +39999,13 @@ var render = function() {
                           )
                         }
                       }
-                    })
+                    }),
+                    _vm._v(" "),
+                    _vm.$page.errors.reminder
+                      ? _c("div", { staticClass: "error" }, [
+                          _vm._v(_vm._s(_vm.$page.errors.reminder[0]))
+                        ])
+                      : _vm._e()
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "form-group" }, [
@@ -40020,7 +40037,13 @@ var render = function() {
                           )
                         }
                       }
-                    })
+                    }),
+                    _vm._v(" "),
+                    _vm.$page.errors.reminder_date
+                      ? _c("div", { staticClass: "error" }, [
+                          _vm._v(_vm._s(_vm.$page.errors.reminder_date[0]))
+                        ])
+                      : _vm._e()
                   ]),
                   _vm._v(" "),
                   _c("button", { staticClass: "btn btn-success" }, [

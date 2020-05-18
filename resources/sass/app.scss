@@ -7,3 +7,11 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 @import 'node_modules/font-awesome/scss/font-awesome';
+
+.breabcrumb-sep {
+    color: lightgray;
+}
+.error {
+    color: red;
+    font-size: 0.8em;
+}
