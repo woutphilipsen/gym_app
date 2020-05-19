@@ -42,5 +42,20 @@ class ReminderController extends Controller
             'reminder' => $reminder
         ]);
     }
+
+    public function updateAndCreate(Request $request) 
+    {
+        $postData = $this->validate($request, [
+            'reminder_id' => 'required|exists:reminders,id',
+        ]);
+
+        $reminder = Reminder::find($postData['reminder_id']);
+        $reminder->status = 'completed';
+        $reminder->save();
+
+        $lead = Lead::find($reminder->lead_id);
+
+        return redirect()->route('reminder.add', ['lead' => $lead]);
+    }
 }
  

@@ -2445,6 +2445,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     mainReminder: Object
@@ -2462,7 +2468,13 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     handleSubmit: function handleSubmit() {
-      this.$emit('reminderSubmit', this.reminder);
+      this.$emit("reminderSubmit", this.reminder);
+    },
+    handleAddNewReminder: function handleAddNewReminder() {
+      this.$emit("addNewReminder", this.reminder);
+    },
+    handleCloseReminder: function handleCloseReminder() {
+      this.$emit("closeReminder", this.reminder);
     }
   }
 });
@@ -2511,6 +2523,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2524,7 +2539,16 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     handleFormSubmit: function handleFormSubmit(postData) {
-      console.log('postData', postData);
+      console.log("postData", postData);
+    },
+    handleAddNewReminder: function handleAddNewReminder(data) {
+      var postData = {
+        reminder_id: data.id
+      };
+      this.$inertia.post(route('reminder.update'), postData);
+    },
+    handleCloseReminder: function handleCloseReminder(postData) {
+      console.log("handleCloseReminder", postData);
     }
   }
 });
@@ -40050,7 +40074,7 @@ var render = function() {
               ),
               _vm._v(" "),
               _c("span", { staticClass: "breadcrumb-sp" }, [_vm._v("/")]),
-              _vm._v("\n          Add reminder\n        ")
+              _vm._v("\n          Reminder add\n        ")
             ],
             1
           )
@@ -40455,84 +40479,99 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "form",
-    {
-      on: {
-        submit: function($event) {
-          $event.preventDefault()
-          return _vm.handleSubmit($event)
+  return _c("div", [
+    _c("div", { staticClass: "form-group" }, [
+      _c("label", { attrs: { for: "reminder" } }, [_vm._v("Reminder")]),
+      _vm._v(" "),
+      _c("textarea", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.reminder.reminder,
+            expression: "reminder.reminder"
+          }
+        ],
+        staticClass: "form-control",
+        attrs: { name: "reminder", id: "reminder" },
+        domProps: { value: _vm.reminder.reminder },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.$set(_vm.reminder, "reminder", $event.target.value)
+          }
         }
-      }
-    },
-    [
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", { attrs: { for: "reminder" } }, [_vm._v("Reminder")]),
-        _vm._v(" "),
-        _c("textarea", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.reminder.reminder,
-              expression: "reminder.reminder"
-            }
-          ],
-          staticClass: "form-control",
-          attrs: { name: "reminder", id: "reminder" },
-          domProps: { value: _vm.reminder.reminder },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.$set(_vm.reminder, "reminder", $event.target.value)
-            }
-          }
-        }),
-        _vm._v(" "),
-        _vm.$page.errors.reminder
-          ? _c("div", { staticClass: "error" }, [
-              _vm._v(_vm._s(_vm.$page.errors.reminder[0]))
-            ])
-          : _vm._e()
-      ]),
+      }),
       _vm._v(" "),
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", { attrs: { for: "date" } }, [_vm._v("Reminder date")]),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.reminder.reminder_date,
-              expression: "reminder.reminder_date"
-            }
-          ],
-          staticClass: "form-control",
-          attrs: { type: "date", name: "date", id: "date" },
-          domProps: { value: _vm.reminder.reminder_date },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.$set(_vm.reminder, "reminder_date", $event.target.value)
-            }
-          }
-        }),
-        _vm._v(" "),
-        _vm.$page.errors.reminder_date
-          ? _c("div", { staticClass: "error" }, [
-              _vm._v(_vm._s(_vm.$page.errors.reminder_date[0]))
-            ])
-          : _vm._e()
-      ]),
+      _vm.$page.errors.reminder
+        ? _c("div", { staticClass: "error" }, [
+            _vm._v(_vm._s(_vm.$page.errors.reminder[0]))
+          ])
+        : _vm._e()
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "form-group" }, [
+      _c("label", { attrs: { for: "date" } }, [_vm._v("Reminder date")]),
       _vm._v(" "),
-      _c("button", { staticClass: "btn btn-success" }, [_vm._v("Save")])
-    ]
-  )
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.reminder.reminder_date,
+            expression: "reminder.reminder_date"
+          }
+        ],
+        staticClass: "form-control",
+        attrs: { type: "date", name: "date", id: "date" },
+        domProps: { value: _vm.reminder.reminder_date },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.$set(_vm.reminder, "reminder_date", $event.target.value)
+          }
+        }
+      }),
+      _vm._v(" "),
+      _vm.$page.errors.reminder_date
+        ? _c("div", { staticClass: "error" }, [
+            _vm._v(_vm._s(_vm.$page.errors.reminder_date[0]))
+          ])
+        : _vm._e()
+    ]),
+    _vm._v(" "),
+    _vm.reminder.id
+      ? _c("div", [
+          _c(
+            "div",
+            {
+              staticClass: "btn btn-success",
+              on: { click: _vm.handleAddNewReminder }
+            },
+            [_vm._v("Add reminder")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "btn btn-outline-danger",
+              on: { click: _vm.handleCloseReminder }
+            },
+            [_vm._v("Close reminder")]
+          )
+        ])
+      : _c("div", [
+          _c(
+            "button",
+            { staticClass: "btn btn-success", on: { click: _vm.handleSubmit } },
+            [_vm._v("Save")]
+          )
+        ])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -40596,7 +40635,11 @@ var render = function() {
               [
                 _c("reminder-form", {
                   attrs: { "main-reminder": _vm.reminder },
-                  on: { reminderSubmit: _vm.handleFormSubmit }
+                  on: {
+                    reminderSubmit: _vm.handleFormSubmit,
+                    addNewReminder: _vm.handleAddNewReminder,
+                    closeReminder: _vm.handleCloseReminder
+                  }
                 })
               ],
               1

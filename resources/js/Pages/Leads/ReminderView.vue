@@ -1,7 +1,6 @@
 <template>
   <layout>
     <div class="container">
-
       <div class="row">
         <div class="col-md-12">
           <h1>
@@ -15,35 +14,50 @@
       </div>
 
       <div class="row">
-          <div class="col-md-6">
-              <div class="card">
-                  <div class="card-header">Add Reminder</div>
-                  <div class="card-body">
-                     <reminder-form :main-reminder="reminder" @reminderSubmit="handleFormSubmit"></reminder-form>
-                  </div>
-              </div>
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-header">Add Reminder</div>
+            <div class="card-body">
+              <reminder-form
+                :main-reminder="reminder"
+                @reminderSubmit="handleFormSubmit"
+                @addNewReminder="handleAddNewReminder"
+                @closeReminder="handleCloseReminder"
+              ></reminder-form>
+            </div>
           </div>
+        </div>
       </div>
-
     </div>
   </layout>
 </template>
 
 <script>
-    import Layout from './../../Shared/Layout';
-    import ReminderForm from './ReminderForm';
-    export default {
-        props: {
-            lead: Object,
-            reminder: Object
-        },
-        components: {
-            Layout, ReminderForm
-        },
-        methods: {
-            handleFormSubmit(postData) {
-                console.log('postData', postData);                
-            }
-        }
+import Layout from "./../../Shared/Layout";
+import ReminderForm from "./ReminderForm";
+export default {
+  props: {
+    lead: Object,
+    reminder: Object
+  },
+  components: {
+    Layout,
+    ReminderForm
+  },
+  methods: {
+    handleFormSubmit(postData) {
+      console.log("postData", postData);
+    },
+    handleAddNewReminder(data) {
+      const postData = {
+          reminder_id: data.id
+      }
+
+      this.$inertia.post(route('reminder.update'), postData);
+    },
+    handleCloseReminder(postData) {
+      console.log("handleCloseReminder", postData);
     }
+  }
+};
 </script>

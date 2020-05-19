@@ -8,7 +8,7 @@
             <span class="breadcrumb-sp">/</span>
             <inertia-link :href="$route('lead.list', {lead: lead})">Lead details</inertia-link>
             <span class="breadcrumb-sp">/</span>
-            Add reminder
+            Reminder add
           </h1>
         </div>
       </div>
