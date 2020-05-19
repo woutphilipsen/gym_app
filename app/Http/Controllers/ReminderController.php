@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Lead;
+use App\Models\Reminder;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
 
@@ -32,6 +33,14 @@ class ReminderController extends Controller
         $lead->reminders()->create($postData);
 
         return redirect()->route('lead.view', [$lead]);
+    }
+
+    public function view(Lead $lead, Reminder $reminder)
+    {
+        return Inertia::render('Leads/ReminderView', [
+            'lead' => $lead,
+            'reminder' => $reminder
+        ]);
     }
 }
  

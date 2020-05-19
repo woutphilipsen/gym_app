@@ -5,7 +5,7 @@
         <div class="col-md-12">
           <h1>
             <inertia-link :href="$route('lead.list')">Leads</inertia-link>
-            <span class="breadcrumb-sp">/</span>
+            <span class="breadcrumb-sep">/</span>
             Lead details
           </h1>
         </div>
@@ -110,7 +110,7 @@
                     <div class="col-md-2">{{ reminder.reminder_date }}</div>
                     <div class="col-md-2"><strong>{{ reminder.status }}</strong></div>
                     <div class="col-md-2">
-                        <inertia-link href="#" class="float-right">
+                        <inertia-link :href="$route('reminder.view', {lead: lead, reminder: reminder})" class="float-right">
                             <i class="fa fa-edit"></i>
                         </inertia-link>
                     </div>
