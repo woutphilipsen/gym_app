@@ -3,7 +3,12 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <p>This is the dashboard, welcome {{ fname }} {{ lname }}</p>
+                    <p>Welcome {{ fname }}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <reminder-list :reminders="reminders"></reminder-list>
                 </div>
             </div>
         </div>
@@ -11,13 +16,14 @@
 </template>
 
 <<script>
-import Layout from './../../Shared/Layout'
+import Layout from './../../Shared/Layout';
+import ReminderList from './ReminderList';
 export default {
     components: {
-        Layout
+        Layout, ReminderList
     },
     props: [
-        'fname', 'lname',
+        'fname', 'lname', 'reminders'
     ]
 }
 </script>
