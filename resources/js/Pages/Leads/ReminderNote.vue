@@ -1,5 +1,5 @@
 <template>
- <layout>
+  <layout>
     <div class="container">
       <div class="row">
         <div class="col-md-12">
@@ -17,15 +17,15 @@
           <div class="card">
             <div class="card-header">Add note</div>
             <div class="card-body">
-                <form @submit.prevent="handleAddNote">
-                    <div class="form-group">
-                        <label for="note">Notee</label>
-                        <textarea name="note" id="note" class="form-control" v-model="note"></textarea>
-                        <div v-if="$page.errors.note" class="error">{{ $page.errors.note[0] }}</div>
-                    </div>
+              <form @submit.prevent="handleAddNote">
+                <div class="form-group">
+                  <label for="note">Notee</label>
+                  <textarea name="note" id="note" class="form-control" v-model="note"></textarea>
+                  <div v-if="$page.errors.note" class="error">{{ $page.errors.note[0] }}</div>
+                </div>
 
-                    <button class="btn btn-success">Close</button>
-                </form>
+                <button class="btn btn-success">Close</button>
+              </form>
             </div>
           </div>
         </div>
@@ -39,25 +39,25 @@ import Layout from "./../../Shared/Layout";
 export default {
   props: {
     lead: Object,
-    reminder: Object,
+    reminder: Object
   },
   data() {
-      return {
-          'note': ''
-      }
+    return {
+      note: ""
+    };
   },
   components: {
     Layout
   },
   methods: {
-      handleAddNote() {
-          const postData = {
-              reminder_id: this.reminder.id,
-              note: this.note
-          }
+    handleAddNote() {
+      const postData = {
+        reminder_id: this.reminder.id,
+        note: this.note
+      };
 
-          this.$inertia.post(route("reminder.close"), postData);
-      }
+      this.$inertia.post(route("reminder.close"), postData);
+    }
   }
-}
+};
 </script>

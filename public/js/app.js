@@ -2067,6 +2067,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -2140,6 +2144,43 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -2148,11 +2189,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   data: function data() {
     return {
       lead: {
-        name: '',
-        email: '',
-        phone: '',
-        dob: '',
-        "package": ''
+        name: "",
+        email: "",
+        phone: "",
+        dob: "",
+        "package": ""
       }
     };
   },
@@ -2167,7 +2208,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return _this.$inertia.post('/leads/save', _this.lead);
+                return _this.$inertia.post("/leads/save", _this.lead);
 
               case 2:
                 response = _context.sent;
@@ -2237,8 +2278,8 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       reminder: {
-        reminder: '',
-        reminder_date: ''
+        reminder: "",
+        reminder_date: ""
       }
     };
   },
@@ -2270,6 +2311,14 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2493,6 +2542,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     mainReminder: Object,
@@ -2575,7 +2627,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      'note': ''
+      note: ""
     };
   },
   components: {
@@ -2658,7 +2710,7 @@ __webpack_require__.r(__webpack_exports__);
       var postData = {
         reminder_id: data.id
       };
-      this.$inertia.post(route('reminder.update'), postData);
+      this.$inertia.post(route("reminder.update"), postData);
     }
   }
 });
@@ -2731,6 +2783,34 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   methods: {
@@ -2741,7 +2821,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/logout', {});
+                return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/logout", {});
 
               case 2:
                 window.location.href = "/";
@@ -40800,7 +40880,7 @@ var render = function() {
               ),
               _vm._v(" "),
               _c("span", { staticClass: "breadcrumb-sp" }, [_vm._v("/")]),
-              _vm._v("\n           Reminder add note\n         ")
+              _vm._v("\n          Reminder add note\n        ")
             ],
             1
           )
@@ -41092,7 +41172,7 @@ var staticRenderFns = [
         }
       },
       [
-        _vm._v("\n                            Manage"),
+        _vm._v("\n              Manage\n              "),
         _c("span", { pre: true, attrs: { class: "caret" } })
       ]
     )
@@ -41116,7 +41196,7 @@ var staticRenderFns = [
         }
       },
       [
-        _vm._v("\n                            Philipsen Jan"),
+        _vm._v("\n              Philipsen Jan\n              "),
         _c("span", { pre: true, attrs: { class: "caret" } })
       ]
     )

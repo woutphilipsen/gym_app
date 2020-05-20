@@ -1,18 +1,18 @@
 <template>
-    <layout>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <p>Welcome {{ fname }}</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-4">
-                    <reminder-list :reminders="reminders"></reminder-list>
-                </div>
-            </div>
+  <layout>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <p>Welcome {{ fname }}</p>
         </div>
-    </layout>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+          <reminder-list :reminders="reminders"></reminder-list>
+        </div>
+      </div>
+    </div>
+  </layout>
 </template>
 
 <<script>

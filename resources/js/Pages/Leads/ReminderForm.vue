@@ -20,7 +20,10 @@
 
     <div v-if="reminder.id">
       <div class="btn btn-success" @click="handleAddNewReminder">Add reminder</div>
-      <inertia-link :href="$route('reminder.note', {lead: lead, reminder: mainReminder})" class="btn btn-outline-danger">Close reminder</inertia-link>
+      <inertia-link
+        :href="$route('reminder.note', {lead: lead, reminder: mainReminder})"
+        class="btn btn-outline-danger"
+      >Close reminder</inertia-link>
     </div>
     <div v-else>
       <button class="btn btn-success" @click="handleSubmit">Save</button>

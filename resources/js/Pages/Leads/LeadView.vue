@@ -108,11 +108,16 @@
                   <div class="row">
                     <div class="col-md-6">{{ reminder.reminder }}</div>
                     <div class="col-md-2">{{ reminder.reminder_date }}</div>
-                    <div class="col-md-2"><strong>{{ reminder.status }}</strong></div>
                     <div class="col-md-2">
-                        <inertia-link :href="$route('reminder.view', {lead: lead, reminder: reminder})" class="float-right">
-                            <i class="fa fa-edit"></i>
-                        </inertia-link>
+                      <strong>{{ reminder.status }}</strong>
+                    </div>
+                    <div class="col-md-2">
+                      <inertia-link
+                        :href="$route('reminder.view', {lead: lead, reminder: reminder})"
+                        class="float-right"
+                      >
+                        <i class="fa fa-edit"></i>
+                      </inertia-link>
                     </div>
                   </div>
                 </li>
@@ -122,7 +127,10 @@
           <div class="card" v-else>
             <div class="card-header">Lead reminders</div>
             <div class="card-body">
-              <inertia-link :href="$route('reminder.add', {lead: lead})" class="btn btn-success">Add new reminder</inertia-link>
+              <inertia-link
+                :href="$route('reminder.add', {lead: lead})"
+                class="btn btn-success"
+              >Add new reminder</inertia-link>
             </div>
           </div>
         </div>

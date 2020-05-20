@@ -29,28 +29,28 @@
 <script>
 import Layout from "./../../Shared/Layout";
 import ReminderForm from "./ReminderForm";
-    export default {
-        props: {
-            lead: Object
-        },
-        components: {
-            Layout,
-            ReminderForm
-        },
-        data() {
-            return {
-            reminder: {
-                reminder: '',
-                reminder_date: ''
-            }
-            }
-        },
-        methods: {
-            handleSubmit(postData) {
-                postData.lead_id = this.lead.id;
-            
-                this.$inertia.post(route("reminder.save"), postData);
-            }
-        }
+export default {
+  props: {
+    lead: Object
+  },
+  components: {
+    Layout,
+    ReminderForm
+  },
+  data() {
+    return {
+      reminder: {
+        reminder: "",
+        reminder_date: ""
+      }
+    };
+  },
+  methods: {
+    handleSubmit(postData) {
+      postData.lead_id = this.lead.id;
+
+      this.$inertia.post(route("reminder.save"), postData);
     }
+  }
+};
 </script>

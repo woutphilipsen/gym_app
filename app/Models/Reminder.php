@@ -8,7 +8,7 @@ class Reminder extends Model
 {
     protected $guarded = [];
 
-    public function lead() 
+    public function lead()
     {
         return $this->belongsTo(Lead::class);
     }

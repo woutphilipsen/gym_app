@@ -37,7 +37,11 @@
           </table>
         </div>
         <div class="col-md-12">
-          <inertia-link class="btn btn-info" :href="$route('lead.add')" style="margin-top:30px; margin-right:10px; float:right;">Add lead</inertia-link>
+          <inertia-link
+            class="btn btn-info"
+            :href="$route('lead.add')"
+            style="margin-top:30px; margin-right:10px; float:right;"
+          >Add lead</inertia-link>
         </div>
       </div>
     </div>

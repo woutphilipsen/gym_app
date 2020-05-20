@@ -50,10 +50,10 @@ export default {
     },
     handleAddNewReminder(data) {
       const postData = {
-          reminder_id: data.id
-      }
+        reminder_id: data.id
+      };
 
-      this.$inertia.post(route('reminder.update'), postData);
+      this.$inertia.post(route("reminder.update"), postData);
     }
   }
 };

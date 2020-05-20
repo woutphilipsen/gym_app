@@ -9,7 +9,7 @@ use Inertia\Inertia;
 
 class DashboardController extends Controller
 {
-    public function index() 
+    public function index()
     {
         $reminders = Reminder::query()
             ->with(['lead'])
