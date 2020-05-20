@@ -17,7 +17,7 @@
           <div class="card">
             <div class="card-header">Add Reminder</div>
             <div class="card-body">
-              <reminder-form :main-reminder="reminder" @reminderSubmit="handleSubmit"></reminder-form>
+              <reminder-form :lead="lead" :main-reminder="reminder" @reminderSubmit="handleSubmit"></reminder-form>
             </div>
           </div>
         </div>

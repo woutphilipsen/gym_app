@@ -20,9 +20,9 @@
             <div class="card-body">
               <reminder-form
                 :main-reminder="reminder"
+                :lead="lead"
                 @reminderSubmit="handleFormSubmit"
                 @addNewReminder="handleAddNewReminder"
-                @closeReminder="handleCloseReminder"
               ></reminder-form>
             </div>
           </div>
@@ -54,9 +54,6 @@ export default {
       }
 
       this.$inertia.post(route('reminder.update'), postData);
-    },
-    handleCloseReminder(postData) {
-      console.log("handleCloseReminder", postData);
     }
   }
 };

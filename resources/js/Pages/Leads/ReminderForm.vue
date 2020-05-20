@@ -19,8 +19,8 @@
     </div>
 
     <div v-if="reminder.id">
-        <div class="btn btn-success" @click="handleAddNewReminder">Add reminder</div>
-        <div class="btn btn-outline-danger" @click="handleCloseReminder">Close reminder</div>
+      <div class="btn btn-success" @click="handleAddNewReminder">Add reminder</div>
+      <inertia-link :href="$route('reminder.note', {lead: lead, reminder: mainReminder})" class="btn btn-outline-danger">Close reminder</inertia-link>
     </div>
     <div v-else>
       <button class="btn btn-success" @click="handleSubmit">Save</button>
@@ -31,7 +31,8 @@
 <script>
 export default {
   props: {
-    mainReminder: Object
+    mainReminder: Object,
+    lead: Object
   },
   data() {
     return {
@@ -49,11 +50,7 @@ export default {
       this.$emit("reminderSubmit", this.reminder);
     },
     handleAddNewReminder() {
-      
       this.$emit("addNewReminder", this.reminder);
-    },
-    handleCloseReminder() {
-        this.$emit("closeReminder", this.reminder);
     }
   }
 };

@@ -57,5 +57,29 @@ class ReminderController extends Controller
 
         return redirect()->route('reminder.add', ['lead' => $lead]);
     }
+
+    public function addNote(Lead $lead, Reminder $reminder)
+    {
+        return Inertia::render('Leads/ReminderNote', [
+            'lead' => $lead,
+            'reminder' => $reminder
+        ]);
+    }
+
+    public function close(Request $request)
+    {
+        $postData = $this->validate($request, [
+            'reminder_id' => 'required|exists:reminders,id',
+            'note' => 'required|min:3',
+        ]);
+
+        $reminder = Reminder::find($postData['reminder_id']);
+        $reminder->status = 'completed';
+        $reminder->save();
+
+        $lead = Lead::find($reminder->lead_id);
+
+        return redirect()->route('lead.view', ['lead' => $lead]);
+    }
 }
  
