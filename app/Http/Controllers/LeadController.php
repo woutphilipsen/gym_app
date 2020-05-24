@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Lead;
+use App\Models\Package;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
-use App\Models\Lead;
-use Carbon\Carbon;
 
 class LeadController extends Controller
-{   
+{
     private $validations;
 
     public function __construct()
@@ -23,24 +24,48 @@ class LeadController extends Controller
         ];
     }
 
-    public function index()
+    public function index(Request $request)
     {
+        $package = null;
+        $search = false;
+        if ($request->has('package_search') && $request->input('package_search') != 0) {
+            $package = Package::findOrFail($request->input('package_search'));
+        }
+        if ($request->has('search') && $request->input('search') !== '') {
+            $search = true;
+        }
+
         $leads = Lead::query()
             ->where('branch_id', 1)
+            ->where('active', 1)
+            ->when($search, function ($query) use ($request) {
+                $query->where('name', 'like', "%{$request->input('search')}%")
+                    ->orWhere('email', 'like', "%{$request->input('search')}%");
+            })
+            ->when($package !== null, function ($query) use ($request, $package) {
+                $query->where('interested_package', '=', $package->name);
+            })
+            ->orderByDesc('id')
+            ->paginate(10);
+
+        return Inertia::render('Leads/Index', [
+            'leads' => $leads,
+        ]);
+    }
+
+    public function create()
+    {
+        $packages = Package::query()
+            ->where('status', 'active')
             ->orderByDesc('id')
             ->get();
 
-            return Inertia::render('Leads/Index', [
-                'leads' => $leads
-            ]);
+        return Inertia::render('Leads/LeadAdd', [
+            'packages' => $packages,
+        ]);
     }
 
-    public function create() 
-    {
-        return Inertia::render('Leads/LeadAdd');
-    }
-    
-    public function store(Request $request) 
+    public function store(Request $request)
     {
         $postData = $this->validate($request, $this->validations);
 
@@ -69,9 +94,15 @@ class LeadController extends Controller
     public function view(Lead $lead)
     {
         $lead->load(['reminders']);
-        
-        return Inertia::render('Leads/LeadView.vue', [
-            'lead-prop' => $lead
+
+        $packages = Package::query()
+            ->where('status', 'active')
+            ->orderByDesc('id')
+            ->get();
+
+        return Inertia::render('Leads/LeadView', [
+            'lead-prop' => $lead,
+            'packages' => $packages,
         ]);
     }
 
@@ -87,6 +118,7 @@ class LeadController extends Controller
             ->update($postData);
 
         return redirect()
-            ->route('lead.view', ['lead' => $postData['id']]);
+            ->route('lead.view', ['lead' => $postData['id']])
+            ->with('success', 'Your changes are saved now.');
     }
 }

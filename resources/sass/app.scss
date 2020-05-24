@@ -1,3 +1,4 @@
+  
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 
@@ -6,10 +7,15 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
-@import 'node_modules/font-awesome/scss/font-awesome';
 
-.breabcrumb-sep {
-    color: lightgray;
+.arrow-icon {
+    width: 20px;
+    fill: #b8c2cc;
+    height: 20px;
+    display: block;
+}
+.breadcrumb-sep {
+    color: gray;
 }
 .error {
     color: red;

@@ -2,7 +2,7 @@
   <div>
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
       <div class="container">
-        <inertia-link class="navbar-brand" href="/">Fit App</inertia-link>
+        <inertia-link class="navbar-brand" href="/">FitApp</inertia-link>
         <button
           class="navbar-toggler"
           type="button"
@@ -34,7 +34,8 @@
               </a>
 
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownLeft">
-                <inertia-link href="/leads/list" class="dropdown-item">Leads</inertia-link>
+                <inertia-link :href="$route('lead.list')" class="dropdown-item">Leads</inertia-link>
+                <inertia-link :href="$route('package.list')" class="dropdown-item">Packages</inertia-link>
               </div>
             </li>
           </ul>
@@ -50,14 +51,12 @@
                 data-toggle="dropdown"
                 aria-haspopup="true"
                 aria-expanded="false"
-                v-pre
-              ><i class="fa fa-sign-out"></i>
-              <span class="caret"></span>
+              >
+                {{ userName }}
+                <span class="caret"></span>
               </a>
 
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <!-- Next inertia-link causes a problem & doesn't goes to login page instead showing pop up -->
-                <!-- <inertia-link href="/logout" method="post">Logout</inertia-link> -->
                 <a class="dropdown-item" href="#" @click="handleLogout">Logout</a>
               </div>
             </li>
@@ -65,6 +64,8 @@
         </div>
       </div>
     </nav>
+
+    <alert-messages></alert-messages>
 
     <main class="py-4">
       <slot />
@@ -74,8 +75,19 @@
 
 <script>
 import axios from "axios";
-
+import AlertMessages from "./AlertMessages";
 export default {
+  components: {
+    AlertMessages
+  },
+  mounted() {
+    this.userName = this.$page.auth.user.name;
+  },
+  data() {
+    return {
+      userName: ""
+    };
+  },
   methods: {
     async handleLogout() {
       await axios.post("/logout", {});

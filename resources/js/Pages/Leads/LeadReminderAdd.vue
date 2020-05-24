@@ -5,19 +5,24 @@
         <div class="col-md-12">
           <h1>
             <inertia-link :href="$route('lead.list')">Leads</inertia-link>
-            <span class="breadcrumb-sp">/</span>
-            <inertia-link :href="$route('lead.list', {lead: lead})">Lead details</inertia-link>
-            <span class="breadcrumb-sp">/</span>
-            Reminder add
+            <span class="breadcrumb-sep">/</span>
+            <inertia-link :href="$route('lead.view', {lead: lead})">Reminders</inertia-link>
+            <span class="breadcrumb-sep">/</span>
+            Add Reminder
           </h1>
         </div>
       </div>
+
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-sm-6">
           <div class="card">
             <div class="card-header">Add Reminder</div>
             <div class="card-body">
-              <reminder-form :lead="lead" :main-reminder="reminder" @reminderSubmit="handleSubmit"></reminder-form>
+              <reminder-form
+                :prop-reminder="reminder"
+                :lead="lead"
+                @reminderSubmit="handleReminderSave"
+              ></reminder-form>
             </div>
           </div>
         </div>
@@ -37,19 +42,31 @@ export default {
     Layout,
     ReminderForm
   },
+  created() {
+    this.reminder.reminder_date = this.getToday();
+  },
   data() {
     return {
       reminder: {
         reminder: "",
-        reminder_date: ""
+        reminder_date: "",
+        note: ""
       }
     };
   },
   methods: {
-    handleSubmit(postData) {
-      postData.lead_id = this.lead.id;
-
-      this.$inertia.post(route("reminder.save"), postData);
+    handleReminderSave(reminder) {
+      this.$inertia.post(route("reminder.save"), reminder);
+    },
+    getToday() {
+      var date = new Date();
+      var day = date.getDate();
+      var month = date.getMonth() + 1;
+      var year = date.getFullYear();
+      if (month < 10) month = "0" + month;
+      if (day < 10) day = "0" + day;
+      var today = year + "-" + month + "-" + day;
+      return today;
     }
   }
 };

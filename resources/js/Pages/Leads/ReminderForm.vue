@@ -1,9 +1,8 @@
 <template>
-  <div>
+  <form @submit.prevent="handleSubmit">
     <div class="form-group">
       <label for="reminder">Reminder</label>
       <textarea name="reminder" id="reminder" class="form-control" v-model="reminder.reminder"></textarea>
-      <div v-if="$page.errors.reminder" class="error">{{ $page.errors.reminder[0] }}</div>
     </div>
 
     <div class="form-group">
@@ -15,27 +14,21 @@
         class="form-control"
         v-model="reminder.reminder_date"
       />
-      <div v-if="$page.errors.reminder_date" class="error">{{ $page.errors.reminder_date[0] }}</div>
     </div>
 
-    <div v-if="reminder.id">
-      <div class="btn btn-success" @click="handleAddNewReminder">Add reminder</div>
-      <inertia-link
-        :href="$route('reminder.note', {lead: lead, reminder: mainReminder})"
-        class="btn btn-outline-danger"
-      >Close reminder</inertia-link>
-    </div>
-    <div v-else>
-      <button class="btn btn-success" @click="handleSubmit">Save</button>
-    </div>
-  </div>
+    <button class="btn btn-success">Save</button>
+    <inertia-link :href="$route('lead.view', {lead: lead})" class="btn btn-warning">Back</inertia-link>
+  </form>
 </template>
 
 <script>
 export default {
   props: {
-    mainReminder: Object,
+    propReminder: Object,
     lead: Object
+  },
+  created() {
+    this.reminder = this.propReminder;
   },
   data() {
     return {
@@ -45,15 +38,11 @@ export default {
       }
     };
   },
-  created() {
-    this.reminder = this.mainReminder;
-  },
   methods: {
     handleSubmit() {
-      this.$emit("reminderSubmit", this.reminder);
-    },
-    handleAddNewReminder() {
-      this.$emit("addNewReminder", this.reminder);
+      let postData = this.reminder;
+      postData.lead_id = this.lead.id;
+      this.$emit("reminderSubmit", postData);
     }
   }
 };
