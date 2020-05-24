@@ -51,9 +51,8 @@
                 aria-haspopup="true"
                 aria-expanded="false"
                 v-pre
-              >
-                Philipsen Jan
-                <span class="caret"></span>
+              ><i class="fa fa-sign-out"></i>
+              <span class="caret"></span>
               </a>
 
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">

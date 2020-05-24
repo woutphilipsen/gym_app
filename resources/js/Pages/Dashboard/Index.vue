@@ -3,7 +3,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <p>Welcome {{ fname }}</p>
+          <p>Welcome {{ name }}</p>
         </div>
       </div>
       <div class="row">
@@ -23,7 +23,7 @@ export default {
         Layout, ReminderList
     },
     props: [
-        'fname', 'lname', 'reminders'
+       'name', 'reminders'
     ]
 }
 </script>

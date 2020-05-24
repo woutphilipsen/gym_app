@@ -19,8 +19,7 @@ class DashboardController extends Controller
             ->get();
 
         $data = [
-            'fname' => 'Wout',
-            'lname' => 'Philipsen',
+            'name' => Auth::user()->name,
             'reminders' => $reminders
         ];
 

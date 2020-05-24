@@ -1972,7 +1972,7 @@ __webpack_require__.r(__webpack_exports__);
     Layout: _Shared_Layout__WEBPACK_IMPORTED_MODULE_0__["default"],
     ReminderList: _ReminderList__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
-  props: ['fname', 'lname', 'reminders']
+  props: ['name', 'reminders']
 });
 
 /***/ }),
@@ -1986,6 +1986,13 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2736,7 +2743,6 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-//
 //
 //
 //
@@ -39848,7 +39854,7 @@ var render = function() {
     _c("div", { staticClass: "container" }, [
       _c("div", { staticClass: "row" }, [
         _c("div", { staticClass: "col-md-12" }, [
-          _c("p", [_vm._v("Welcome " + _vm._s(_vm.fname))])
+          _c("p", [_vm._v("Welcome " + _vm._s(_vm.name))])
         ])
       ]),
       _vm._v(" "),
@@ -39885,44 +39891,62 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "card" }, [
-    _c("div", { staticClass: "card-header" }, [_vm._v("Reminders list")]),
+  return _c("div", [
+    _c("h3", [_vm._v("Reminders list for today")]),
     _vm._v(" "),
-    _c("div", { staticClass: "card-body" }, [
-      _c(
-        "ul",
-        { staticClass: "list-group list-group-flush" },
-        _vm._l(_vm.reminders, function(reminder) {
-          return _c(
-            "li",
-            { key: reminder.id, staticClass: "list-group-item" },
-            [
-              _c(
-                "inertia-link",
-                {
-                  attrs: {
-                    href: _vm.$route("reminder.view", {
-                      lead: reminder.lead,
-                      reminder: reminder
-                    })
-                  }
-                },
-                [
-                  _c("strong", [_vm._v(_vm._s(reminder.lead.name))]),
-                  _vm._v(" "),
-                  _c("br"),
-                  _vm._v(
-                    "\n          " + _vm._s(reminder.reminder) + "\n        "
-                  )
-                ]
-              )
-            ],
-            1
-          )
-        }),
-        0
-      )
-    ])
+    _c(
+      "div",
+      _vm._l(_vm.reminders, function(reminder) {
+        return _c(
+          "div",
+          {
+            key: reminder.id,
+            staticClass: "card",
+            staticStyle: { "margin-top": "1em" }
+          },
+          [
+            _c("div", { staticClass: "card-header" }, [
+              _vm._v("Contact email:  "),
+              _c("strong", [_vm._v(_vm._s(reminder.lead.email))])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "card-body" }, [
+              _c("ul", { staticClass: "list-group list-group-flush" }, [
+                _c(
+                  "li",
+                  { staticClass: "list-group-item" },
+                  [
+                    _c(
+                      "inertia-link",
+                      {
+                        attrs: {
+                          href: _vm.$route("reminder.view", {
+                            lead: reminder.lead,
+                            reminder: reminder
+                          })
+                        }
+                      },
+                      [
+                        _c("strong", [_vm._v(_vm._s(reminder.lead.name))]),
+                        _vm._v(" "),
+                        _c("br"),
+                        _vm._v(
+                          "\n            " +
+                            _vm._s(reminder.reminder) +
+                            "\n          "
+                        )
+                      ]
+                    )
+                  ],
+                  1
+                )
+              ])
+            ])
+          ]
+        )
+      }),
+      0
+    )
   ])
 }
 var staticRenderFns = []
@@ -41196,7 +41220,8 @@ var staticRenderFns = [
         }
       },
       [
-        _vm._v("\n              Philipsen Jan\n              "),
+        _c("i", { pre: true, attrs: { class: "fa fa-sign-out" } }),
+        _vm._v(" "),
         _c("span", { pre: true, attrs: { class: "caret" } })
       ]
     )
